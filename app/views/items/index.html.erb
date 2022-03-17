@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zxx"> 
+
+<body>
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 p-0">
+                <div class="categories__item categories__large__item set-bg">        
+                    <div class="categories__text">
+                        <h1>N'hésitez plus !</h1>
+                        <p>Moelleux intense, tendre regard : choisissez  le chat qui vous correspond parmi notre large panel de photos ! Tous ont été capturé par nos meilleurs photographe, et ces clichés uniques ne manqueront pas de vous impressionner ! </p>
+                        <br><br>
+                        <a id="shop_now" href="#title">Voir nos produits</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                       <div class="bgcategory">
+                       <div class="categories__item set-bg" >
+                        
+                            <div class="categories__text">
+                                <h4>100% Bio</h4>
+                                <p>Certifié sans produits chimiques</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                    <div class="bgcategory3">
+                        <div class="categories__item set-bg">
+                            <div class="categories__text">
+                            
+                                <h4>100% Hypoallergénique</h4>
+                                <p>Sans risques d'allergies</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="bgcategory2">
+                        <div class="categories__item set-bg" data-setbg="img/categories/category-4.jpg">
+                            <div class="categories__text">
+                                <h4>100% Câlins</h4>
+                                <p>D'une douceur incroyable</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                    <div class="bgcategory4">
+                        <div class="categories__item set-bg" data-setbg="img/categories/category-5.jpg">
+                            <div class="categories__text">
+                                <h4>Surprenants</h4>
+                                <p>Des individus uniques</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<section id="title">
+    <center><br><br>
+    <h4>Nos produits</h4>
+    <center>
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <% @items.each do |item| %>
+           <div class="col-lg-4 col-md-6 col-sm-12 mix women">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <% if item.image.attached? %>
+                        <%= image_tag item.image, alt: 'avatar' %>
+                        <% else %>
+                        <p>Il n'y a pas encore d'avatar lié à ce produit</p>	
+                        <% end %>
+                    </div>
+                    <div class="product__item__text">
+
+                        <a> <h6> <%=link_to item.title, item_path(:id => item.id) %></h6></a>
+                     
+                        <div class="product__price"><%= item.price%>€</div>
+
+                        	<p><%= button_to "Ajouter au panier ", items_in_carts_path(:item_id => item.id), {class:"btn btn--accent disable"} %></p>
+                                
+                        </div>
+                </div>
+            </div>
+            <%end%>
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->
+
+</body>
+
+</html>

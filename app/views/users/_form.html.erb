@@ -1,0 +1,41 @@
+<section id="profile">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="our-team">
+            <div class="picture">
+              <img class="img-fluid" src="https://www.fetchpetcare.com/wp-content/uploads/2016/01/Cute-Little-Baby-Kitten-Is-a-Copycat-e1452728859600.jpg">
+            </div>
+            <div class="team-content">
+              <h3 class="name">Prénom Nom</h3>
+              <h3 class="title"><%= @user.email %><br>
+                Adresse</h3>
+              <section id="edit">
+                <%= form_with(model: user, local: true) do |form| %>
+                  <% if user.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+                      <ul>
+                        <% user.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= form.label :Nouvelle_Adresse_eMail %>
+                    <%= form.text_field :user_email, value: @user.email%>
+                  </div>
+                  <div class="actions">
+                    <%= form.submit class:"btn btn-primary" %>
+                  </div>
+                <% end %>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

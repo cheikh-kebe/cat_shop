@@ -1,0 +1,70 @@
+<div class="container-fluid mt-5" style="height: 90vh">
+  <section id="shoppingcart">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-8 cart content-center ">
+          <div class="row border-top border-bottom ">
+            <div class="row main align-items-center">
+              <% @sum = 0 %>
+              <% @items_in_cart.each do |element| %>
+                <div class="col-2">
+                  <% if element.item.image.attached? %>
+                    <%= image_tag element.item.image %>
+                  <% end %>
+                </div>
+                <div class="col-7">
+                  <p class="row"><%=element.item.title%></p>
+                </div>
+                <div class="col-2">
+                  <p> <%= element.item.price%> € </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">
+              <div class="col-1">
+                <div class="col-1">
+                  <%= link_to 'x', items_in_cart_path(element.id),  method: :delete %>
+                </div>
+                <% @sum = @sum + element.item.price %>
+              <%end%>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 summary">
+          <div class="col align-self-center text-center text-muted">
+            <div class="col align-self-center text-center text-muted">
+              <div class="col align-self-center text-center text-muted">
+                <div class="col">
+                  <% if @items_in_cart.count == 0%>
+                    <h4><b>Votre Panier est vide...</b></h4>
+                  <%else%>
+                    <h4><b>Panier</b></h4>
+                  <%end%>
+                </div>
+              </div>
+              <hr>
+              <div class="row" style="border-top: rgba(0,0,0,.1); padding: 2vh 0;">
+                <% if @items_in_cart.count != 0%>
+                  <% if @items_in_cart.count != 0%>
+                    <% if @items_in_cart.count != 0%>
+                      <div class="col">
+                        <p>Nombre d'articles </p>
+                        <p> Prix total </p>
+                      </div>
+                      <div class="col text-right">
+                        <p><%= @items_in_cart.count%> </p>
+                        <p> <%= @sum %> € </p>
+                      </div>
+                    <% end %>
+                  </div>
+                  <hr>
+                  <% if @items_in_cart.count != 0 %>
+                    <p><%= link_to "Commander", new_order_path(:sum => @sum), class:'btn' %></p>
+                  <% else %>
+                    <p><%= link_to "Trouver le chat de mes rêves", root_path, class:'btn' %></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>

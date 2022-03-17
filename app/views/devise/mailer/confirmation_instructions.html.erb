@@ -1,0 +1,8 @@
+<p>Bienvenu <%= @user.email %> !</p>
+
+<p>Merci de t'être inscrit sur notre site ! Des milliers de châtons t'attendent !</p>
+<p>Tu peux confirmer ton inscription en cliquant sur le lien ci-dessous :</p>
+
+<p><%= link_to 'Confirmer mon compte', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p> À tout de suite sur https://cute-cat-shop-thp.herokuapp.com/ !

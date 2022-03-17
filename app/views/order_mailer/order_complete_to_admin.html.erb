@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Salut, <%= @user.email %> vient de passer une commande pour <%= @total_price %>€ !</h1>
+    <hr>
+    <h3>Voici le résumé de sa commande:</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">N°</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items_buy.each do |item| %>
+          <tr>
+            <th scope="row"><%= item.id %></th>
+            <td><%= item.item.title %></td>
+            <td><%= item.item.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <h3>TOTAL = <%= @total_price %>€.</h3>
+  </body>
+</html>

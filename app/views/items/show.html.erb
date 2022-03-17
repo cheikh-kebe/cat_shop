@@ -1,0 +1,41 @@
+<section id="showproduct" class="h-100">        
+
+
+
+
+<main>
+	<ul id="cards">
+		<li class="card" id="card_1">
+			<div class="card__content">
+
+				<div>
+					<h2><%= @item.title %></h2>
+					<p><%= @item.description %></p>
+          			<p><%= button_to "Ajouter au panier ", items_in_carts_path(:item_id => @item.id), {class:"btn btn--accent disable"} %></p>
+					<%if current_user != nil %><br><br>
+						<%if current_user.email == "admin@admin.admin"  %>
+							<h3>Changer d'avatar ?</h3>
+							<%= form_tag item_images_path(@item), multipart: true do %>
+							<%= file_field_tag :image %>
+							<%= submit_tag "mettre à jour" %>
+						<%end%>
+					<%end%>
+		<% end %>
+				</div>
+
+				
+				<% if @item.image.attached? %>
+				
+					<%= image_tag @item.image, alt: 'avatar' %>
+				<% else %>
+
+					<p>Il n'y a pas encore d'avatar lié à ce produit</p>	
+					
+				<% end %>
+				
+			</div>
+				
+			
+		</li>
+
+</section>

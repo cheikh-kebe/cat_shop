@@ -1,0 +1,36 @@
+<section id="profile">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="our-team">
+            <div class="picture">
+              <img class="img-fluid" src="https://www.fetchpetcare.com/wp-content/uploads/2016/01/Cute-Little-Baby-Kitten-Is-a-Copycat-e1452728859600.jpg">
+            </div>
+            <div class="team-content">
+              <h3 class="name">Adresse Mail</h3>
+              <h3 class="title"><%= @user.email %></h3>
+              <div class="container">
+                <h3>Mes commandes passées</h3>
+                <div class="row align-middle shadow p-3 mb-5 mt-5 justify-content-center">
+                  <% @orders.each do |order| %>
+                    <div class="card mt-5 ms-5 me-5" style="width: 18rem;">
+                      <div class="card-body mt-3">
+                        <h5 class="card-title">Commande: <%=order.customer_stripe_id%></h5>
+                        <h6 class="card-subtitle mb-2 ">Prix Total: <%= order.total_price%></h6>
+                        <h6 class="card-subtitle mb-2 ">Commande passée le: <%=order.created_at%></h6>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <ul class="social">
+              <li> <%= link_to 'Editez profil', edit_user_path(current_user.id) %> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

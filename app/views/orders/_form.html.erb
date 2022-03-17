@@ -1,0 +1,56 @@
+<section id="pay">
+  <section id="profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="our-team">
+              <div class="picture">
+                <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-zpw91lVC9VPQsKOBZ3rGHIRBFVpae2QjvA&usqp=CAU">
+              </div>
+              <div class="team-content">
+                <%= form_with url: orders_path(:sum => @sum), local: true, method: :post do |form| %>
+                  <% if order.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+                      <ul>
+                        <% order.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= form.hidden_field :cart_id, value: @cart_id %>
+                  </div>
+                  <div class="field">
+                    <%= form.hidden_field :user_id, value: @user_id %>
+                  </div>
+                  <div class="field">
+                    <%= form.hidden_field :total_price, value: @sum %>
+                  </div>
+                  <div class="field">
+                    <%= form.hidden_field :customer_stripe_id, value: @customer_stripe_id %>
+                  </div>
+                  <%= form_tag orders_path do %>
+                    <article>
+                      <label class="amount">
+                        <span> Prix de la commande : <%= @sum %> €</span>
+                      </label>
+                    </article>
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="Achat d'un produit"
+    data-amount="<% @stripe_amount %>"
+    data-locale="auto"></script>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
